@@ -2,41 +2,68 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+/* Kiddy Talk Design System - All colors, gradients, fonts, etc should be defined here. 
 All colors MUST be HSL.
 */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Kiddy Talk Brand Colors */
+    --kiddy-blue: 184 84% 47%; /* #2EBBC0 - Azul Confiável */
+    --kiddy-yellow: 51 100% 50%; /* #FED700 - Amarelo Energético */
+    --kiddy-orange: 14 100% 61%; /* #FF6835 - Laranja Amigável */
+    --kiddy-green: 122 39% 49%; /* #4CAF50 - Verde Fresco */
+    --kiddy-red: 18 100% 66%; /* #FF9252 - Vermelho Terno */
+    --kiddy-soft: 0 0% 98%; /* #FF99FFA - Branco Suave */
+    
+    /* Semantic tokens based on Kiddy Talk colors */
+    --background: var(--kiddy-soft);
+    --foreground: 210 17% 15%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 210 17% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 210 17% 15%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: var(--kiddy-blue);
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: var(--kiddy-yellow);
+    --secondary-foreground: 210 17% 15%;
 
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: var(--kiddy-orange);
+    --accent-foreground: 0 0% 100%;
+
+    --success: var(--kiddy-green);
+    --success-foreground: 0 0% 100%;
+
+    --warning: var(--kiddy-red);
+    --warning-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --ring: var(--kiddy-blue);
 
-    --radius: 0.5rem;
+    --radius: 1rem;
+    
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(var(--kiddy-yellow)), hsl(var(--kiddy-orange)));
+    --gradient-card: linear-gradient(145deg, hsl(var(--kiddy-blue)), hsl(var(--kiddy-green)));
+    --gradient-fun: linear-gradient(180deg, hsl(var(--kiddy-orange)), hsl(var(--kiddy-red)));
+    
+    /* Shadows */
+    --shadow-kiddy: 0 8px 32px -8px hsl(var(--kiddy-blue) / 0.3);
+    --shadow-warm: 0 8px 32px -8px hsl(var(--kiddy-orange) / 0.3);
+    
+    /* Animations */
+    --transition-bouncy: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
     --sidebar-background: 0 0% 98%;
 
@@ -101,5 +128,57 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    font-family: 'Fredoka', 'Comic Sans MS', cursive;
+  }
+}
+
+@layer components {
+  /* Kiddy Talk Button Variants */
+  .btn-kiddy-primary {
+    @apply bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-300 hover:scale-105;
+    box-shadow: var(--shadow-kiddy);
+  }
+  
+  .btn-kiddy-secondary {
+    @apply bg-secondary text-secondary-foreground hover:bg-secondary/90 transition-all duration-300 hover:scale-105;
+    box-shadow: var(--shadow-warm);
+  }
+  
+  .btn-kiddy-success {
+    @apply bg-success text-success-foreground hover:bg-success/90 transition-all duration-300 hover:scale-105;
+  }
+  
+  .btn-kiddy-warning {
+    @apply bg-warning text-warning-foreground hover:bg-warning/90 transition-all duration-300 hover:scale-105;
+  }
+  
+  /* Card Variants */
+  .card-kiddy {
+    @apply rounded-2xl p-6 shadow-lg transition-all duration-300 hover:scale-105;
+    box-shadow: var(--shadow-kiddy);
+  }
+  
+  .card-kiddy-warm {
+    @apply rounded-2xl p-6 shadow-lg transition-all duration-300 hover:scale-105;
+    box-shadow: var(--shadow-warm);
+  }
+  
+  /* Character animations */
+  .bounce-slow {
+    animation: bounce 2s infinite;
+  }
+  
+  .wiggle {
+    animation: wiggle 1s ease-in-out infinite;
+  }
+  
+  @keyframes wiggle {
+    0%, 7% { transform: rotateZ(0); }
+    15% { transform: rotateZ(-15deg); }
+    20% { transform: rotateZ(10deg); }
+    25% { transform: rotateZ(-10deg); }
+    30% { transform: rotateZ(6deg); }
+    35% { transform: rotateZ(-4deg); }
+    40%, 100% { transform: rotateZ(0); }
   }
 }
